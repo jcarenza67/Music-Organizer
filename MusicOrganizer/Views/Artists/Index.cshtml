@@ -17,12 +17,12 @@
     {
       <p>There are no artists in the list.</p>
     }
-    <!-- <ul>
-      @foreach (Item item in Model)
+    <ul>
+      @foreach (Artist artist in Model)
       {
-        <li><a href='/items/@item.Id'>@item.Description</a></li>
+        <li><a href='/artists/@artist.Id'>@artist.Name</a></li>
       }
-    </ul> -->
+    </ul>
 
     <a href="/artists/new">Add a new artist.</a>
     <p><a href='/'>Back home</a></p>  

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace MusicOrganizer.Models
 {
   public class Artist
@@ -13,7 +15,7 @@ namespace MusicOrganizer.Models
       Id = _instances.Count;
     }
 
-    public static void GetAll()
+    public static List<Artist> GetAll()
     {
       return _instances;
     }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System;
 using MusicOrganizer.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,30 +27,28 @@ namespace MusicOrganizer.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpGet("/records/{recordId}/artists/{artistId}")]
+    public ActionResult Show(int recordId, int artistId)
     {
-      [HttpGet("/records/{recordId}/artists/{artistId}")]
-      public ActionResult Show(int recordId, int artistId)
-      {
-        Artist artist = Artist.Find(artistId);
-        Record record = Record.Find(recordId);
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        model.Add("artist", artist);
-        model.Add("record", record);
-        return View(model);
-      }
-
-      [HttpPost("/records/{recordId}/artists")]
-      public ActionResult Create(int recordId, string artistName)
-      {
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        Record foundRecord = Record.Find(recordId);
-        Artist newArtist = new Artist(artistName);
-        foundRecord.AddArtist(newArtist);
-        List<Artist> recordArtists = foundRecord.Artists;
-        model.Add("artists", recordArtists);
-        model.Add("record", foundRecord);
-        return View("Show", model);
-      }      
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Record record = Record.Find(recordId);
+      Artist artist = Artist.Find(artistId);
+      model.Add("artist", artist);
+      model.Add("record", record);
+      return View(model);
     }
+
+    [HttpPost("/records/{recordId}/artists")]
+    public ActionResult Create(int recordId, string artistName)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Record foundRecord = Record.Find(recordId);
+      Artist newArtist = new Artist(artistName);
+      foundRecord.AddArtist(newArtist);
+      List<Artist> recordArtists = foundRecord.Artists;
+      model.Add("artists", recordArtists);
+      model.Add("record", foundRecord);
+      return View("Show", model);
+    }      
   }
 }
