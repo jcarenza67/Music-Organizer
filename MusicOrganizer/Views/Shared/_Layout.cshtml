@@ -8,10 +8,29 @@
       rel="stylesheet" 
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
       crossorigin="anonymous">
-    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/style.css">
   </head>
   <body>
-    @RenderBody()
-    @await Html.PartialAsync("Footer")
+
+    <header>
+      <h1>Music Organizer</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/artists">Artists</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <div class="container">
+        @RenderBody()
+      </div>
+    </main>
+
+    <footer>
+      @await Html.PartialAsync("Footer")
+    </footer>
   </body>
 </html>
