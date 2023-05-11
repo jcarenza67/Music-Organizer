@@ -1,6 +1,6 @@
-namespace ProjectName.Models
+namespace MusicOrganizer.Models
 {
-  public class ClassName
+  public class Music
   {
     public string PropertyName { get; set; }
   }

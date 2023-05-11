@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProjectName.Models;
+using MusicOrganizer.Models;
 using System.Collections.Generic;
 using System;
 
-namespace ProjectName.Tests
+namespace MusicOrganizer.Tests
 {
   [TestClass]
     public class ClassNameTests

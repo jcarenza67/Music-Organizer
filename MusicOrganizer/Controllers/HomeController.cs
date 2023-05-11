@@ -1,12 +1,12 @@
-using ProjectName.Models;
+using MusicOrganizer.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassName.Controllers
 {
-  public class ClassNmeController : Controller
+  public class HomeController : Controller
   {
     [HttpGet("/")]
-    public ActionResult MethodName()
+    public ActionResult Index()
     {
       return View();
     }
