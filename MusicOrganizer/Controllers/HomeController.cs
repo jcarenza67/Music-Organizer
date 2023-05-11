@@ -1,7 +1,6 @@
-using MusicOrganizer.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClassName.Controllers
+namespace MusicOrganizer.Controllers
 {
   public class HomeController : Controller
   {

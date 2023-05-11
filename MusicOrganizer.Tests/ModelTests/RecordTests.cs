@@ -6,7 +6,7 @@ using System;
 namespace MusicOrganizer.Tests
 {
   [TestClass]
-    public class ClassNameTests
+    public class RecordTests
     {
       [TestMethod]
       public void MethodName_DescriptionOfBehavior_ExpectedReturnValue()
