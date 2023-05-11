@@ -4,20 +4,17 @@ namespace MusicOrganizer.Models
 {
   public class Artist
   {
+    private static List<Artist> _instances = new List<Artist> {};
     public string Name { get; set; }
     public int Id { get; }
-    private static List<Artist> _instances = new List<Artist> {};
+    public List<Record> Records { get; set; }
 
     public Artist(string artistName)
     {
       Name = artistName;
       _instances.Add(this);
       Id = _instances.Count;
-    }
-
-    public static List<Artist> GetAll()
-    {
-      return _instances;
+      Records = new List<Record>{};
     }
 
     public static void ClearAll()
@@ -25,9 +22,19 @@ namespace MusicOrganizer.Models
       _instances.Clear();
     }
 
+    public static List<Artist> GetAll()
+    {
+      return _instances;
+    }
+
     public static Artist Find(int searchId)
     {
       return _instances[searchId-1];
+    }
+
+    public void AddRecord(Record record)
+    {
+      Records.Add(record);
     }
   }
 }

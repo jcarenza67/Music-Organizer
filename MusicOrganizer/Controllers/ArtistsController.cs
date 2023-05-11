@@ -7,22 +7,52 @@ namespace MusicOrganizer.Controllers
 {
   public class ArtistsController : Controller
   {
-    [HttpGet("/records/{recordId}/artists/new")]
-    public ActionResult New(int recordId)
+    [HttpGet("/artists")]
+    public ActionResult Index()
     {
-      Record record = Record.Find(recordId);
-      return View(record);
+      List<Artist> allArtists = Artist.GetAll();
+      return View(allArtists);
     }
 
-    [HttpGet("/records/{recordId}/artists/{artistId}")]
-    public ActionResult Show(int recordId, int artistId)
+    [HttpGet("/artists/new")]
+    public ActionResult New()
     {
-      Artist artist = Artist.Find(artistId);
-      Record record = Record.Find(recordId);
+      return View();
+    }
+
+    [HttpPost("/artists")]
+    public ActionResult Create(string artistName)
+    {
+      Artist newArtist = new Artist(artistName);
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet("/artists/{id}")]
+    public ActionResult Show(int id)
+    {
       Dictionary<string, object> model = new Dictionary<string, object>();
-      model.Add("artist", artist);
-      model.Add("record", record);
+      Artist selectedArtist = Artist.Find(id);
+      List<Record> artistRecords = selectedArtist.Records;
+      model.Add("artist", selectedArtist);
+      model.Add("records", artistRecords);
       return View(model);
     }
+
+
+    // This one creates new Items within a given Category, not new Categories:
+
+    [HttpPost("/artists/{artistId}/records")]
+    public ActionResult Create(int artistId, string recordName)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Artist foundArtist = Artist.Find(artistId);
+      Record newRecord = new Record(recordName);
+      foundArtist.AddRecord(newRecord);
+      List<Record> artistRecords = foundArtist.Records;
+      model.Add("records", artistRecords);
+      model.Add("artist", foundArtist);
+      return View("Show", model);
+    }
+
   }
 }
