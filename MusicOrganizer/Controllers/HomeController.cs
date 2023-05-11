@@ -1,3 +1,4 @@
+using MusicOrganizer.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MusicOrganizer.Controllers

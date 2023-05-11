@@ -42,11 +42,11 @@ namespace MusicOrganizer.Controllers
     // This one creates new Items within a given Category, not new Categories:
 
     [HttpPost("/artists/{artistId}/records")]
-    public ActionResult Create(int artistId, string recordName)
+    public ActionResult Create(int artistId, string recordTitle)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
       Artist foundArtist = Artist.Find(artistId);
-      Record newRecord = new Record(recordName);
+      Record newRecord = new Record(recordTitle);
       foundArtist.AddRecord(newRecord);
       List<Record> artistRecords = foundArtist.Records;
       model.Add("records", artistRecords);
